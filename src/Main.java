@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Hello and Welcome!");
-        deliveryPartner = new Coordinates(0,0);
+        deliveryPartner = new Coordinates(12.95,77.6);
         List<DeliveryDetails> pickup = new ArrayList<>();
         List<DeliveryDetails> deliver = new ArrayList<>();
 
