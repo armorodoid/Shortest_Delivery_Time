@@ -23,10 +23,11 @@ public class Delivery {
         return rad * c;
     }
     public double startDelivery(List<DeliveryDetails> pickup, Double time, Coordinates deliveryPartner) {
-        double speed = 20.0/60;
+        double speed = 20.0/60; //converted speed to km/min
 
         while(!pickup.isEmpty()) {
-            List<RelativeDist> ls = new ArrayList<>();
+            DeliveryDetails next = pickup.get(0);
+            double nextTime = Double.MAX_VALUE;
 
             for (DeliveryDetails x : pickup) {
                 double timeReq;
@@ -36,20 +37,22 @@ public class Delivery {
                     double temp = calculateDistance(x.restaurant, deliveryPartner) / speed;
                     timeReq = Math.max(temp, x.preparationTime-time);
                 }
-                ls.add(new RelativeDist(timeReq, x));
+
+                if (timeReq<nextTime) { // Checking for nearest location
+                    next = x;
+                    nextTime = timeReq;
+                }
             }
 
-            ls.sort(Comparator.comparingDouble(a -> a.timeReq));
-            RelativeDist x = ls.get(0);
-            time+=x.timeReq;
-            if (x.dd.orderPicked) {
-                pickup.remove(x.dd);
-                x.dd.setLogCustomers(time);
-                deliveryPartner = x.dd.customer;
+            time+=nextTime;
+            if (next.orderPicked) {
+                pickup.remove(next);
+                next.setLogCustomers(time);
+                deliveryPartner = next.customer;
             } else {
-                x.dd.orderPicked=true;
-                x.dd.setLogRestaurants(time);
-                deliveryPartner = x.dd.restaurant;
+                next.orderPicked=true;
+                next.setLogRestaurants(time);
+                deliveryPartner = next.restaurant;
             }
         }
         return time;
