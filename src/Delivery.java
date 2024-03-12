@@ -39,18 +39,7 @@ public class Delivery {
                 ls.add(new RelativeDist(timeReq, x));
             }
 
-            Collections.sort(ls, new Comparator<RelativeDist>() {
-                @Override
-                public int compare(RelativeDist a, RelativeDist b) {
-                    if (a.timeReq>b.timeReq)
-                        return 1;
-                    else if (a.timeReq==b.timeReq)
-                        return 0;
-                    else
-                        return -1;
-                }
-            });
-
+            ls.sort(Comparator.comparingDouble(a -> a.timeReq));
             RelativeDist x = ls.get(0);
             time+=x.timeReq;
             if (x.dd.orderPicked) {
