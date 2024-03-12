@@ -22,7 +22,7 @@ public class Delivery {
         double c = 2 * Math.asin(Math.sqrt(z));
         return rad * c;
     }
-    public Double startDelivery(List<DeliveryDetails> pickup, Double time, Coordinates deliveryPartner) {
+    public double startDelivery(List<DeliveryDetails> pickup, Double time, Coordinates deliveryPartner) {
         double speed = 20.0/60;
 
         while(!pickup.isEmpty()) {
