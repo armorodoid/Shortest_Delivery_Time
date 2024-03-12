@@ -2,7 +2,7 @@ public class DeliveryDetails {
     Coordinates restaurant;
     Coordinates customer;
     int deliveryNumber;
-    int preparationTime;
+    int preparationTime; //in minutes
     boolean orderPicked;
 
     public DeliveryDetails(Coordinates restaurant, Coordinates customer, int deliveryNumber, int preparationTime) {

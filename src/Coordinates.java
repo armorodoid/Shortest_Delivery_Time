@@ -1,6 +1,6 @@
 public class Coordinates {
-    double x;
-    double y;
+    double x; //Latitude
+    double y; //Longitude
 
     public Coordinates(double x, double y) {
         this.x = x;
