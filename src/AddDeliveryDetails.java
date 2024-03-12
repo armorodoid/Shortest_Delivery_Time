@@ -3,12 +3,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AddDeliveryDetails {
-    private static int i;
-    public int addDeliveryDetails(List<DeliveryDetails> pickup) {
-        int result = 0;
+    public int addDeliveryDetails(List<DeliveryDetails> pickup, File file) {
+        int result = 0, i=0;
         try {
-            File myObj = new File("src/tests/test-1.txt");
-            Scanner myReader = new Scanner(myObj);
+            Scanner myReader = new Scanner(file);
             int n = Integer.parseInt(myReader.nextLine());
             while (i<n) {
                 i++;
